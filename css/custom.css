@@ -1,0 +1,457 @@
+/* Load Google Fonts */
+@import url('https://fonts.googleapis.com/css?family=Karla');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans}');
+@import url('https://fonts.googleapis.com/css?family=Roboto}');
+/*CSS Variables*/
+:root{
+    /*--sidebar-background: #F8F9FA;*/
+    --sidebar-background: white;
+    --sidebar-width: 20%;
+    overflow: hidden;
+}
+/* Responsive design for smaller screen */
+@media screen and (max-width: 1000px){
+    :root{
+        --sidebar-width: 30%;
+    }
+}
+@media screen and (max-width: 800px){
+    :root{
+        --sidebar-width: 35%;
+    }
+}
+body{
+    font-family: 'Roboto';
+    /*font-weight: 500;*/
+}
+/*Connal's embed map element styling*/
+#map{
+    height: 100vh;
+    z-index: 1;
+}
+/*Fixing weird bootstrap margin in index.html*/
+.mb-3, .my-3 {
+    margin-bottom: 0 !important;
+}
+/*Custom Sidebar Styling*/
+nav.sidebar{
+    max-height: 100%;
+    height: 100vh;
+    box-shadow: 3px 2px 3px rgba(0, 0, 0, 0.25);
+    /*box-shadow: 1px 2px 1px rgba(0, 0, 0, 1);*/
+    width: var(--sidebar-width);
+    overflow: hidden;
+    -webkit-transition:  .5s;
+    -moz-transition:  .5s;
+    -ms-transition:  .5s;
+    -o-transition:  .5s;
+    transition:  .5s;
+    background: var(--sidebar-background);
+    z-index: 100;
+}
+.container-fluid{
+    max-height: 100vh;
+}
+/*Hover animations menu*/
+nav.sidebar a{
+}
+nav.sidebar a.nav-link:hover{
+    background: #F8F9FA;
+    transition: .1s;
+}
+nav.sidebar a.nav-link{
+    transition: .1s;
+    color: black;
+}
+nav.sidebar li:not(:first-child) a:hover{
+    /*border-left: 3px solid black;*/
+}
+/*Logo CSS*/
+#logo{
+    background-image: url('../images/logo_lmao.png');
+    background-color: var(--sidebar-background);
+    min-height: 100px;
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    background-position: center center;
+    width: 100%;
+}
+/*Minimum width so the text element doesn't collapse*/
+.sidebar a.nav-link{
+    display: flex;
+    justify-content: center;
+    min-width: 200px;
+    white-space: nowrap;
+}
+/*Extra Chevron*/
+.fa-chevron-left::after{
+    content:'\f053';
+    left: 10px;
+    /*width: 1px;*/
+}
+/* Make the icon clickthrough for jQuery */
+#expand .fas{
+    pointer-events: none;
+}
+/*Main Content Expansion*/
+main{
+    /*width: 100%;*/
+    flex-grow: 2;
+    position: relative;
+    /*padding: 1rem;*/
+}
+/*Flexes the row container content*/
+.container-fluid > .row{
+    display: flex;
+}
+/*Sidebar Toggle Styling*/
+div.sidebar-toggle{
+    /*opacity: 0;*/
+    /*background: #b5b5b5;*/
+    background: var(--sidebar-background);
+    position: absolute;
+    top: 50%;
+    padding: 1rem;
+    padding-right: .5rem;
+    padding-left: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 5px #00000052;
+    left: -8px;
+    cursor: pointer;
+    transition: .5s;
+    z-index: 2;
+}
+/*Extra Chevron again*/
+.fa-chevron-right::after{
+    content:  '\f054';
+}
+/* Upload file form */
+#addAnimal{
+    border-radius: 10px;
+    display: none;
+    --padding-size: 2rem;
+    position: fixed;
+    /*padding: calc(2*var(--padding-size)) var(--padding-size);*/
+    padding: var(--padding-size);
+    background: white;
+    left: calc(40% - var(--padding-size));
+    top: calc(40% - var(--padding-size));
+    box-shadow: 0 0 0 100vw rgba(0,0,0,.5);
+    z-index: 999;
+    transition: .3s;
+    border-top: 5px solid rgba(0,0,0,1);
+    width: 25%;
+    min-width: 350px;
+    padding-bottom: .3rem;
+}
+/* Form input styling */
+#addAnimal{
+    /*display: flex;*/
+    flex-direction: column;
+}
+#addAnimal > *{
+    padding-bottom: 1rem;
+}
+#addAnimal .actions{
+    display: flex;
+}
+#addAnimal .actions input:not([type=file]){
+    width: 50%;
+    margin-right:.5rem;
+}
+#addAnimal h3{
+    position: absolute;
+    top: 5px;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+.fields{
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+}
+.fields input[type=text]{
+    width: 50%;
+    margin-left: 1rem;
+}
+.fields input{
+    margin-bottom: 1rem;
+}
+/* Preventing clicking elsewhere */
+#addAnimal::after{
+    position:fixed;
+    content: '';
+    width: 1000vw; height: 1000vh;
+    top: 0; left: 0;
+    z-index: -1;
+    transition: .3s;
+}
+/* Toggle close add animal button */
+#closeForm{
+    position: absolute;
+    top: 0; right: 0;
+    padding: 10px;
+    cursor: pointer;
+}
+/*buttons styling*/
+input[type=submit]{
+    border: 3px solid #000000c9;
+    color:white;
+    border-radius: 8px;
+    padding: .3rem;
+    background: black;
+}
+.actions input,.actions input:hover{
+    transition: .2s;
+    cursor: pointer;
+}
+input[type=submit]:hover{
+    border-color: #000000d6;
+    background: #000000d6;
+}
+input[type=button]{
+    border: 3px solid #c4c4c4;
+    border-radius: 8px;
+    background: none;
+    color:#5f5f5f;
+}
+input[type=button]:hover{
+    background: #c4c4c4;
+    color: black;
+}
+
+
+
+/* Start of Login Form styling --------------------------------------------------- */
+/* Full-width input fields */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #000000d6;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+}
+
+.container {
+    padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+    
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+}
+/* End of Login Form styling --------------------------------------------------- */
+
+/* Start of Sign Up Form styling --------------------------------------------------- */
+
+* {box-sizing: border-box;}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+/* Add a background color when the inputs get focus */
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: black;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+button:hover {
+    opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.su_cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.su_cancelbtn, .su_signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.su_container {
+    padding: 16px;
+}
+
+/* The Modal (background) */
+.su_modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: #474e5d;
+    padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.su_modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Style the horizontal ruler */
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+ 
+/* The Close Button (x) */
+.su_close {
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #f1f1f1;
+}
+
+.su_close:hover,
+.su_close:focus {
+    color: #f44336;
+    cursor: pointer;
+}
+
+/* Clear floats */
+.su_clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+    .su_cancelbtn, .su_signupbtn {
+       width: 100%;
+    }
+}
+
+/* End of Sign Up Form styling --------------------------------------------------- */
