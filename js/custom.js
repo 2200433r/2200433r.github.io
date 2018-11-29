@@ -5,19 +5,31 @@ jQuery(document).ready($=>{
     const nav = $('ul.nav.flex-column');
     let file = document.getElementById('file').files[0];
     let polyline;
+	let circle;
     let global_name;
     // console.log(file);
     fr.onload = e=>{
         let data = x2js.xml_str2json(e.target.result);
-        // console.log(data);
+        //console.log(data);
         let points = getPTS(data);
-        polyline = L.polyline(points, {color: '#'+Math.floor(Math.random()*16777215).toString(16)}).addTo(mymap);
+		//console.log(points);
+		//console.log(points[points.length - 1][0]);
+		var random = Math.floor(Math.random()*16777215)
+		var colour = '#'+random.toString(16);
+        polyline = L.polyline(points, {color: colour}).addTo(mymap);
+		circle = L.circle([points[points.length - 1][0], points[points.length - 1][1]], {
+        color: colour,
+        fillColor: '#'+(random - 1250000).toString(16),
+        fillOpacity: 0.5,
+        radius: 500
+    }).addTo(mymap);
         let copy = polyline.getBounds();
         // console.log(copy);
         // console.log(global_name);
         $('#'+global_name).click(e=>{
             mymap.fitBounds(copy);
         });
+
     };
     $('#collapse').click(()=>{
         sidebar.css("width", "0%");
@@ -52,11 +64,16 @@ jQuery(document).ready($=>{
     $('#file').change((e)=>{
         // console.log(e);
         file = e.currentTarget.files[0];
+		if (!file.name.endsWith(".gpx")) {
+			closeForm();
+			clearForms();
+		}
     });
     form.submit(e=>{
         e.preventDefault();
         let name = $('input[name=animalName]').val();
-        // console.log(name);
+        //console.log(file.name);
+		
         let html = '\n' +
             '                    <li class="nav-item">\n' +
             '                        <a class="nav-link" id="'+name+'" href="#">\n' +
