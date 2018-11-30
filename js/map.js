@@ -134,21 +134,31 @@ new_line = L.polyline(points, {color: 'gold'}).addTo(mymap);
     // zoom the map on each GPX
     polyline.on('click', function() {
         mymap.fitBounds(polyline.getBounds());
+        drawElevs();
+        drawHeart();
     });
 
     circle2.on('click', function() {
         mymap.fitBounds(circle2.getBounds());
+        drawElevs();
+        drawHeart();
     });
 
     polyline2.on('click', function() {
         mymap.fitBounds(polyline2.getBounds());
+        drawElevs();
+        drawHeart();
     });
 
     circle3.on('click', function() {
         mymap.fitBounds(circle3.getBounds());
+        drawElevs();
+        drawHeart();
     });
 
     $("#bounds").click(function(){
         mymap.fitBounds(polyline.getBounds());
+        drawElevs();
+        drawHeart();
     });
 });

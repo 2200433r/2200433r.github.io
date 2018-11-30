@@ -86,7 +86,6 @@ jQuery(document).ready($=>{
         fr.readAsText(file);
         closeForm();
         clearForms();
-        // alert("Only GPX files are supported.");
     });
     $('#findAnimal').click(e=>{
         // console.log(e);
