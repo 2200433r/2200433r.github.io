@@ -113,7 +113,7 @@ var lineChart = new Chart(line,{
     }
 })*/
 
-function drawElevs() {
+function drawElevs(data, times) {
   //console.log("lnds");
   var line = document.getElementById("elevChart");
   var lineChart = new Chart(line,{
@@ -122,7 +122,7 @@ function drawElevs() {
           labels: times,
           datasets:[{
               label: "Elevation",
-              data: elevs,
+              data: data,
               backgroundColor: "rgba(75, 192, 192, 0.2)",
               borderColor: "purple",
               borderWidth: "2px",
@@ -141,15 +141,15 @@ function drawElevs() {
   })
 }
 
-function drawHeart() {
+function drawHeart(data, times) {
   var line = document.getElementById("heartChart");
   var lineChart = new Chart(line,{
       type: "line",
       data: {
           labels: times,
           datasets:[{
-              label: "Elevation",
-              data: heartRate,
+              label: "Heart Rate",
+              data: data,
               backgroundColor: "rgba(255, 159, 64, 0.2)",
               borderColor: "rgba(75, 220, 192, 1)",
               pointRadius:"0",
