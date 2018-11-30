@@ -86,16 +86,13 @@ jQuery(document).ready($=>{
         fr.readAsText(file);
         closeForm();
         clearForms();
+        // alert("Only GPX files are supported.");
     });
     $('#findAnimal').click(e=>{
         // console.log(e);
         let i = $('.animalPick option:selected').attr("data-index");
         // console.log(animalPicks[i].getBounds());
-        let theAnimal = animalPicks[i];
-        let time = getTimePTS(theAnimal['data']);
-        mymap.fitBounds(theAnimal['line'].getBounds());
-        drawElevs(getElevPTS(theAnimal['data']), time);
-        drawHeart(getHeartRate(theAnimal['data']), time);
+        mymap.fitBounds(animalPicks[i]['line'].getBounds());
         // console.log(val);
     });
 });
