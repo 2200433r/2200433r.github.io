@@ -3,6 +3,8 @@ jQuery(document).ready($=>{
     const form = $('#addAnimal');
     const fr = new FileReader();
     const nav = $('ul.nav.flex-column');
+    let i = 0;
+    let animalPicks = {};
     let file = document.getElementById('file').files[0];
     let polyline;
 	let circle;
@@ -14,9 +16,14 @@ jQuery(document).ready($=>{
         let points = getPTS(data);
 		//console.log(points);
 		//console.log(points[points.length - 1][0]);
-		var random = Math.floor(Math.random()*16777215)
+		var random = Math.floor(Math.random()*16777215);
 		var colour = '#'+random.toString(16);
         polyline = L.polyline(points, {color: colour}).addTo(mymap);
+        let temp = {};
+        temp['line'] = polyline;
+        temp['data'] = data;
+        temp['points'] = points;
+        animalPicks[i++] = temp;
 		circle = L.circle([points[points.length - 1][0], points[points.length - 1][1]], {
         color: colour,
         fillColor: '#'+(random - 1250000).toString(16),
@@ -67,23 +74,25 @@ jQuery(document).ready($=>{
 		if (!file.name.endsWith(".gpx")) {
 			closeForm();
 			clearForms();
+      alert("Only GPX files are supported.");
 		}
     });
     form.submit(e=>{
         e.preventDefault();
         let name = $('input[name=animalName]').val();
-        //console.log(file.name);
-		
-        let html = '\n' +
-            '                    <li class="nav-item">\n' +
-            '                        <a class="nav-link" id="'+name+'" href="#">\n' +
-            '                            '+name+'\n' +
-            '                        </a>\n' +
-            '                    </li>';
-        nav.append(html);
+        let html = "<option data-index='"+i+"'>"+name+"</option>";
+        $('.animalPick').append(html);
         global_name = name;
         fr.readAsText(file);
         closeForm();
         clearForms();
+        // alert("Only GPX files are supported.");
+    });
+    $('#findAnimal').click(e=>{
+        // console.log(e);
+        let i = $('.animalPick option:selected').attr("data-index");
+        // console.log(animalPicks[i].getBounds());
+        mymap.fitBounds(animalPicks[i]['line'].getBounds());
+        // console.log(val);
     });
 });

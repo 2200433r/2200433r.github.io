@@ -55,11 +55,11 @@ jQuery(document).ready($=>{
 
     var popup = L.popup();
 
-    function onMapClick(e) {
+    /*function onMapClick(e) {
         popup.setLatLng(e.latlng).setContent("You clicked the map at " + e.latlng.toString()).openOn(mymap);
     }
 
-mymap.on('click', onMapClick);
+mymap.on('click', onMapClick);*/
 
 
 let gpxData;
@@ -151,9 +151,4 @@ new_line = L.polyline(points, {color: 'gold'}).addTo(mymap);
     $("#bounds").click(function(){
         mymap.fitBounds(polyline.getBounds());
     });
-
-
-
-
-
 });
