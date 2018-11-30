@@ -7,7 +7,7 @@ jQuery(document).ready($=>{
     let animalPicks = {};
     let file = document.getElementById('file').files[0];
     let polyline;
-	let circle;
+	  let circle;
     let global_name;
     // console.log(file);
     fr.onload = e=>{
@@ -32,7 +32,7 @@ jQuery(document).ready($=>{
         color: colour,
         fillColor: colour,
         fillOpacity: 0.2,
-        radius: 500
+        radius: 50
     }).addTo(mymap);
         let copy = polyline.getBounds();
 

@@ -1,23 +1,3 @@
-//uncomment to gte working in single file
-
-//let x2js = new X2JS();
-/*
-function gpx(file) {
-    let tempData;
-    $.ajax({
-        url: file,
-        async: false,
-        // cache: false,
-        dataType: 'text',
-        success: e => {
-            tempData = e;
-        },
-        error: e => console.log(e)
-    });
-    return tempData;
-}
-*/
-
 function getElevPTS(arr){
     let temp = [];
     let n = 0;
@@ -57,64 +37,9 @@ function getTimePTS(arr){
     return temp;
 }
 
-jsonObj = x2js.xml_str2json(gpx("map/Activities/activity_1939704174.gpx"));
-elevs = getElevPTS(jsonObj);
-times = getTimePTS(jsonObj);
-heartRate = getHeartRate(jsonObj);
-//console.log(points);
-/*
-var line = document.getElementById("elevChart");
-var lineChart = new Chart(line,{
-    type: "line",
-    data: {
-        labels: times,
-        datasets:[{
-            label: "Elevation",
-            data: elevs,
-            backgroundColor: "rgba(75, 192, 192, 0.2)",
-            borderColor: "purple",
-            borderWidth: "2px",
-            pointBackgroundColor: "purple",
-
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                },
-            }],
-        }
-    }
-})
-
-var line = document.getElementById("heartChart");
-var lineChart = new Chart(line,{
-    type: "line",
-    data: {
-        labels: times,
-        datasets:[{
-            label: "Heart Rates",
-            data: heartRate,
-            backgroundColor: "rgba(255, 159, 64, 0.2)",
-            borderColor: "rgba(75, 220, 192, 1)",
-            pointRadius:"0",
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                },
-            }],
-        }
-    }
-})*/
-
 function drawElevs(data, times) {
-  //console.log("lnds");
+
+  jQuery('#elevChart').html('');
   var line = document.getElementById("elevChart");
   var lineChart = new Chart(line,{
       type: "line",
@@ -123,10 +48,10 @@ function drawElevs(data, times) {
           datasets:[{
               label: "Elevation",
               data: data,
-              backgroundColor: "rgba(75, 192, 192, 0.2)",
-              borderColor: "purple",
+              backgroundColor: "rgba(16, 103, 242, 0.8)",
               borderWidth: "2px",
-              pointBackgroundColor: "purple",
+              pointRadius:"0",
+              cubicInterpolationMode: "monotone",
           }]
       },
       options: {
@@ -142,6 +67,7 @@ function drawElevs(data, times) {
 }
 
 function drawHeart(data, times) {
+
   var line = document.getElementById("heartChart");
   var lineChart = new Chart(line,{
       type: "line",
@@ -150,9 +76,11 @@ function drawHeart(data, times) {
           datasets:[{
               label: "Heart Rate",
               data: data,
-              backgroundColor: "rgba(255, 159, 64, 0.2)",
-              borderColor: "rgba(75, 220, 192, 1)",
+              fill: false,
+              borderColor: "rgba(255, 0, 0, 1)",
+              backgroundColor: "rgba(255, 0, 0, 1)",
               pointRadius:"0",
+              cubicInterpolationMode: "monotone",
           }]
       },
       options: {
