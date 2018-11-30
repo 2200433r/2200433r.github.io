@@ -106,7 +106,7 @@
                             </div>
                         </form>
                     </div>
-                    <!-- End of Sign Up function -->	
+                    <!-- End of Sign Up function -->
 
                     <!--<li class="nav-item">-->
                         <!--<a class="nav-link" id="bounds" href="#">-->
@@ -119,28 +119,24 @@
                             </select>
                         </a>
                         <div class="pickActions">
-                            <button type="button" id="findAnimal" class="btn btn-primary">Find Animal</button>
-                            <button type="button" id="showCharts" class="btn btn-light">Show Charts</button>
+                            <!--<button type="button" id="findAnimal" class="btn btn-primary">Find Animal</button>-->
+                            <button type="button" id="add" class="btn btn-primary">Add Animal</button>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="add" href="#">
-                            Add Animal
-                        </a>
-                    </li>
+                    <!--<li class="nav-item">-->
+                        <!--<a class="nav-link" id="add" href="#">-->
+                            <!--Add Animal-->
+                        <!--</a>-->
+                    <!--</li>-->
 
                     <div class = "chart-container" style="position: relative; width:100%; height:100%;">
                         <canvas id="elevChart" ></canvas>
                     </div>
 
                     <div class = "chart-container" style="position: relative; width:100%; height:100%;">
-                        <canvas id="heartChart" ></canvas>
                     </div>
+                    <canvas id="heartChart" ></canvas>
 
-                    <li class="nav-item">
-                        <a class="nav-link" id="collapse" href="#">
-                            <span> <i class="fas fa-chevron-left"></i> Collapse Menu </span></a>
-                    </li>
                 </ul>
 
 
@@ -156,6 +152,17 @@
         <main role="main" class="">
             <div id="expand" class="sidebar-toggle" data-state="on">
                 <i class="fas fa-chevron-left"></i>
+            </div>
+            <div id="accessibil" class="" data-state="off">
+                <i class="fas fa-universal-access"></i>
+            </div>
+            <div id="accessForm">
+                <i id="close" class="fas fa-times"></i>
+                <ul>
+                    <li><a id="defaultSize" href="#">Default Text Size</a></li>
+                    <li><a id="largeSize" href="#">Large Text Size</a></li>
+                    <li><a id="hugeSize" href="#">Huge Text Size</a></li>
+                </ul>
             </div>
             <form id="addAnimal" action="">
                 <h3>Add new animal</h3>

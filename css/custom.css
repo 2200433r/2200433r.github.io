@@ -1,7 +1,7 @@
 /* Load Google Fonts */
 @import url('https://fonts.googleapis.com/css?family=Karla');
-@import url('https://fonts.googleapis.com/css?family=PT+Sans}');
-@import url('https://fonts.googleapis.com/css?family=Roboto}');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 /*CSS Variables*/
 :root{
     /*--sidebar-background: #F8F9FA;*/
@@ -23,7 +23,7 @@
 }
 }
 body{
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Karla', 'PT Sans';
     /*font-weight: 500;*/
 }
 /*Connal's embed map element styling*/
@@ -308,7 +308,60 @@ span.psw {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     padding-top: 60px;
 }
+/* Access styling */
+#accessibil > i{
+    pointer-events: none;
+}
+#accessibil{
+    position: absolute;
+    background: white;
+    top: 10px; right: 10px;
+    padding: 5px 10px;
+    font-size: 150%;
+    z-index: 99;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 0 5px 1px #0000004a;
+}
 
+#accessForm{
+    display: none;
+    padding: 80px;
+    position: fixed;
+    top: calc(50% - 100px);
+    left: calc(50% - 100px);
+    z-index: 9999;
+    background: white;
+    box-shadow: 0 0 0 1000vw #00000082;
+}
+#accessForm::before{
+    position: fixed;
+    content: '';
+    width: 500vw;
+    height: 500vh;
+    top: 0; left: 0;
+    z-index: -1;
+}
+#accessForm ul{
+    list-style: none;
+    margin: 0; padding:0;
+    text-align: center;
+}
+#defaultSize{
+    font-size: 24px;
+}
+#largeSize{
+    font-size: 36px;
+}
+#hugeSize{
+    font-size: 48px;
+}
+#close{
+    position: absolute;
+    top: 10px; right:10px;
+    font-size: 24px;
+    cursor:pointer;
+}
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;

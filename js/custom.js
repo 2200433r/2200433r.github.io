@@ -16,26 +16,42 @@ jQuery(document).ready($=>{
         let points = getPTS(data);
 		//console.log(points);
 		//console.log(points[points.length - 1][0]);
-		var random = Math.floor(Math.random()*16777215);
-		var colour = '#'+random.toString(16);
+		//var random = Math.floor(Math.random()*16777215);
+    var random = Math.floor(Math.random()*6);
+    console.log(random);
+    var colours = ["purple","red","blue","magenta","aqua","black"]
+		//var colour = '#'+random.toString(16);
+    var colour = colours[random];
         polyline = L.polyline(points, {color: colour}).addTo(mymap);
         let temp = {};
         temp['line'] = polyline;
         temp['data'] = data;
         temp['points'] = points;
-        animalPicks[i++] = temp;
+        animalPicks[i] = temp;
 		circle = L.circle([points[points.length - 1][0], points[points.length - 1][1]], {
         color: colour,
-        fillColor: '#'+(random - 1250000).toString(16),
-        fillOpacity: 0.5,
+        fillColor: colour,
+        fillOpacity: 0.2,
         radius: 500
     }).addTo(mymap);
         let copy = polyline.getBounds();
+
+        polyline.on('click', function() {
+				mymap.fitBounds(polyline.getBounds());
+			});
+
+      circle.on('click', function() {
+      mymap.fitBounds(circle.getBounds());
+    });
         // console.log(copy);
         // console.log(global_name);
-        $('#'+global_name).click(e=>{
-            mymap.fitBounds(copy);
-        });
+        let theAnimal = animalPicks[i];
+        let time = getTimePTS(theAnimal['data']);
+        mymap.fitBounds(theAnimal['line'].getBounds());
+        drawElevs(getElevPTS(theAnimal['data']), time);
+        drawHeart(getHeartRate(theAnimal['data']), time);
+        i++;
+        $('.animalPick option:nth-child('+i+')').attr('selected', 'selected');
 
     };
     $('#collapse').click(()=>{
@@ -86,13 +102,46 @@ jQuery(document).ready($=>{
         fr.readAsText(file);
         closeForm();
         clearForms();
-        // alert("Only GPX files are supported.");
     });
     $('#findAnimal').click(e=>{
-        // console.log(e);
         let i = $('.animalPick option:selected').attr("data-index");
-        // console.log(animalPicks[i].getBounds());
-        mymap.fitBounds(animalPicks[i]['line'].getBounds());
-        // console.log(val);
+        let theAnimal = animalPicks[i];
+        let time = getTimePTS(theAnimal['data']);
+        mymap.fitBounds(theAnimal['line'].getBounds());
+        drawElevs(getElevPTS(theAnimal['data']), time);
+        drawHeart(getHeartRate(theAnimal['data']), time);
     });
+    $('.animalPick').change(e=>{
+        let i = $('.animalPick option:selected').attr("data-index");
+        let theAnimal = animalPicks[i];
+        let time = getTimePTS(theAnimal['data']);
+        mymap.fitBounds(theAnimal['line'].getBounds());
+        drawElevs(getElevPTS(theAnimal['data']), time);
+        drawHeart(getHeartRate(theAnimal['data']), time);
+
+    });
+    $('#defaultSize').click(e=>{
+        $('body').css("font-size", "100%");
+        $('#add').css("font-size", "100%");
+    });
+    $('#largeSize').click(e=>{
+        $('body').css("font-size", "130%");
+        $('#add').css("font-size", "130%");
+    });
+    $('#hugeSize').click(e=>{
+        $('body').css("font-size", "170%");
+        $('#add').css("font-size", "170%");
+    });
+    $('#accessibil').click(e => { toggleAccess() });
+    $('#close').click(e=> toggleAccess());
+    function toggleAccess(){
+        let state =$('#accessibil').attr('data-state');
+        if (state === 'off'){
+            $('#accessForm').show();
+            $('#accessibil').attr('data-state', 'on');
+        } else if (state === 'on'){
+            $('#accessForm').hide();
+            $('#accessibil').attr('data-state', 'off');
+        }
+    }
 });
